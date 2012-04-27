@@ -1,0 +1,17 @@
+{
+  "author": "Tom Wilson <tom@jackhq.com>",
+  "name": "cloudqSpec",
+  "description": "A cloudq specification",
+  "version": "0.1.0",
+  "main": "index.js",
+  "dependencies": {
+    "request": "~2.9.202"
+  },
+  "devDependencies": {
+    "coffee-script": "*"
+  },
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  }
+}
