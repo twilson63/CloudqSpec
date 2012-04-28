@@ -27,6 +27,8 @@ request.post url + '/xterms'
     console.log 'add term /'
     ee.emit 'end'
 
+counter++
+
 # get all xterms 
 request.get url + '/xterms'
   json: true  
@@ -48,6 +50,8 @@ request.get url + '/xterms/' + id
     console.log 'get xterm /'
     ee.emit 'end'
 
+counter++
+
 # update xterm 
 request.put url + '/xterms/' + id
   json: { resource: 'Widget', source: 'couch', target: 'http://localhost:5984/db2'}  
@@ -57,6 +61,8 @@ request.put url + '/xterms/' + id
     assert.equal(res.headers['content-type'], 'application/json')
     console.log 'update xterm /'
     ee.emit 'end'
+
+counter++
 
 # delete xterm 
 request.del url + '/xterms/' + id

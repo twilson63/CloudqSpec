@@ -15,7 +15,6 @@ counter = 0;
 ee = new EventEmitter();
 
 ee.on('end', function() {
-  console.log('end called');
   counter--;
   if (counter === 0) return process.exit();
 });
@@ -53,7 +52,7 @@ request.get(url + '/dings/' + id, {
   if (e) throw e;
   if (res.statusCode !== 200) throw new Error('Status Code is not 200');
   assert.equal(res.headers['content-type'], 'application/json');
-  console.log('get ding by id');
+  console.log('get ding by id /');
   return ee.emit('end');
 });
 
@@ -65,19 +64,21 @@ request.get(url + '/dings', {
   if (e) throw e;
   if (res.statusCode !== 200) throw new Error('Status Code is not 200');
   assert.equal(res.headers['content-type'], 'application/json');
-  console.log('get ding by id');
+  console.log('get dings /');
   return ee.emit('end');
 });
 
 counter++;
 
 request.put(url + '/dings/' + id, {
-  json: true
+  json: {
+    event: 'foo-bar'
+  }
 }, function(e, res, body) {
   if (e) throw e;
   if (res.statusCode !== 200) throw new Error('Status Code is not 200');
   assert.equal(res.headers['content-type'], 'application/json');
-  console.log('get ding by id');
+  console.log('update ding /');
   return ee.emit('end');
 });
 
@@ -89,7 +90,7 @@ request.del(url + '/dings/' + id, {
   if (e) throw e;
   if (res.statusCode !== 200) throw new Error('Status Code is not 200');
   assert.equal(res.headers['content-type'], 'application/json');
-  console.log('get ding by id');
+  console.log('remove ding /');
   return ee.emit('end');
 });
 
@@ -99,6 +100,6 @@ request.post(url + '/events', {
   if (e) throw e;
   if (res.statusCode !== 201) throw new Error('Status Code is not 201');
   assert.equal(res.headers['content-type'], 'application/json');
-  console.log('get ding by id');
+  console.log('trigger event /');
   return ee.emit('end');
 });
